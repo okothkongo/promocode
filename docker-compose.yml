@@ -1,0 +1,27 @@
+version: "3"
+services:
+  database:
+    image: postgres:10.1
+    restart: always
+    environment:
+      POSTGRES_USER:  "${POSTGRES_USERNAME}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  promocode:
+    build: .
+    image: promocode
+    environment:
+      POSTGRES_HOST: "database"
+      POSTGRES_USERNAME: "${POSTGRES_USERNAME}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    ports:
+      - "4000:4000"
+    depends_on:
+      - database
+
+volumes:
+  pgdata:

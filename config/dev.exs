@@ -49,8 +49,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :promocode, PromoCode.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("POSTGRES_USERNAME") || "postgres",
+  password: System.get_env("POSTGRES_USERNAME") || "postgres",
   database: "promocode_dev",
-  hostname: "localhost",
+  hostname: System.get_env("POSTGRES_HOST") || "localhost",
   pool_size: 10
