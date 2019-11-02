@@ -11,8 +11,8 @@ config :logger, level: :warn
 
 # Configure your database
 config :promocode, PromoCode.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("POSTGRES_USERNAME") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "postgres",
   database: "promocode_test",
-  hostname: "localhost",
+  hostname: System.get_env("POSTGRES_HOST") || "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
