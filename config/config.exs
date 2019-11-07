@@ -8,16 +8,16 @@
 use Mix.Config
 
 config :promocode,
-  namespace: PromoCode,
-  ecto_repos: [PromoCode.Repo],
+  namespace: Promo,
+  ecto_repos: [Promo.Repo],
   generators: [binary_id: true]
 
 # Configures the endpoint
-config :promocode, PromoCodeWeb.Endpoint,
+config :promocode, PromoWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "cXJ20oeQINEpRmptiT/WlaBgjLjP3wsZenMYH3IjnABu+SX3j91qPrZ4gceqrM6t",
-  render_errors: [view: PromoCodeWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: PromoCode.PubSub, adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: PromoWeb.ErrorView, accepts: ~w(json)],
+  pubsub: [name: Promo.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,

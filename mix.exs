@@ -1,4 +1,4 @@
-defmodule PromoCode.MixProject do
+defmodule Promo.MixProject do
   use Mix.Project
 
   def project do
@@ -19,7 +19,7 @@ defmodule PromoCode.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {PromoCode.Application, []},
+      mod: {Promo.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -41,7 +41,8 @@ defmodule PromoCode.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
+      {:rename, "~> 0.1.0", only: :dev}
     ]
   end
 

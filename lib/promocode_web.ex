@@ -1,12 +1,12 @@
-defmodule PromoCodeWeb do
+defmodule PromoWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use PromoCodeWeb, :controller
-      use PromoCodeWeb, :view
+      use PromoWeb, :controller
+      use PromoWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,11 +19,11 @@ defmodule PromoCodeWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: PromoCodeWeb
+      use Phoenix.Controller, namespace: PromoWeb
 
       import Plug.Conn
-      import PromoCodeWeb.Gettext
-      alias PromoCodeWeb.Router.Helpers, as: Routes
+      import PromoWeb.Gettext
+      alias PromoWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -31,14 +31,14 @@ defmodule PromoCodeWeb do
     quote do
       use Phoenix.View,
         root: "lib/promocode_web/templates",
-        namespace: PromoCodeWeb
+        namespace: PromoWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
 
-      import PromoCodeWeb.ErrorHelpers
-      import PromoCodeWeb.Gettext
-      alias PromoCodeWeb.Router.Helpers, as: Routes
+      import PromoWeb.ErrorHelpers
+      import PromoWeb.Gettext
+      alias PromoWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -53,7 +53,7 @@ defmodule PromoCodeWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import PromoCodeWeb.Gettext
+      import PromoWeb.Gettext
     end
   end
 

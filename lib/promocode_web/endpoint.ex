@@ -1,7 +1,7 @@
-defmodule PromoCodeWeb.Endpoint do
+defmodule PromoWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :promocode
 
-  socket "/socket", PromoCodeWeb.UserSocket,
+  socket "/socket", PromoWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -40,5 +40,5 @@ defmodule PromoCodeWeb.Endpoint do
     key: "_promocode_key",
     signing_salt: "WvtZJ2na"
 
-  plug PromoCodeWeb.Router
+  plug PromoWeb.Router
 end

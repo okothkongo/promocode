@@ -1,4 +1,4 @@
-defmodule PromoCodeWeb.ChannelCase do
+defmodule PromoWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule PromoCodeWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint PromoCodeWeb.Endpoint
+      @endpoint PromoWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PromoCode.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Promo.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PromoCode.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Promo.Repo, {:shared, self()})
     end
 
     :ok

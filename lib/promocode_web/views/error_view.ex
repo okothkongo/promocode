@@ -1,5 +1,5 @@
-defmodule PromoCodeWeb.ErrorView do
-  use PromoCodeWeb, :view
+defmodule PromoWeb.ErrorView do
+  use PromoWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
