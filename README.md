@@ -1,4 +1,4 @@
-# PromoCode
+# Promo
 
 To start your Phoenix server:
 

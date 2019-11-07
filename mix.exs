@@ -1,9 +1,9 @@
-defmodule PromoCode.MixProject do
+defmodule Promo.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :promocode,
+      app: :promo,
       version: "0.1.0",
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule PromoCode.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {PromoCode.Application, []},
+      mod: {Promo.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

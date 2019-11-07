@@ -1,4 +1,4 @@
-defmodule PromoCodeWeb.ErrorHelpers do
+defmodule PromoWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -25,9 +25,9 @@ defmodule PromoCodeWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(PromoCodeWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(PromoWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(PromoCodeWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(PromoWeb.Gettext, "errors", msg, opts)
     end
   end
 end

@@ -1,4 +1,4 @@
-defmodule PromoCode.DataCase do
+defmodule Promo.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule PromoCode.DataCase do
 
   using do
     quote do
-      alias PromoCode.Repo
+      alias Promo.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import PromoCode.DataCase
+      import Promo.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PromoCode.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Promo.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PromoCode.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Promo.Repo, {:shared, self()})
     end
 
     :ok

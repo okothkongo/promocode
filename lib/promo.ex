@@ -1,6 +1,6 @@
-defmodule PromoCode do
+defmodule Promo do
   @moduledoc """
-  PromoCode keeps the contexts that define your domain
+  Promo keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

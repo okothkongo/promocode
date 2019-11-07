@@ -1,7 +1,7 @@
-defmodule PromoCodeWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :promocode
+defmodule PromoWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :promo
 
-  socket "/socket", PromoCodeWeb.UserSocket,
+  socket "/socket", PromoWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -11,7 +11,7 @@ defmodule PromoCodeWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :promocode,
+    from: :promo,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -37,8 +37,8 @@ defmodule PromoCodeWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_promocode_key",
+    key: "_promo_key",
     signing_salt: "WvtZJ2na"
 
-  plug PromoCodeWeb.Router
+  plug PromoWeb.Router
 end
