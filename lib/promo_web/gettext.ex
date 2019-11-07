@@ -20,5 +20,5 @@ defmodule PromoWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :promocode
+  use Gettext, otp_app: :promo
 end

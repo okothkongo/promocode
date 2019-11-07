@@ -3,7 +3,7 @@ defmodule Promo.MixProject do
 
   def project do
     [
-      app: :promocode,
+      app: :promo,
       version: "0.1.0",
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),

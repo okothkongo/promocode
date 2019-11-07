@@ -30,7 +30,7 @@ defmodule PromoWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/promocode_web/templates",
+        root: "lib/promo_web/templates",
         namespace: PromoWeb
 
       # Import convenience functions from controllers

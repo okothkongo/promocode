@@ -1,6 +1,6 @@
 FROM elixir:1.9.0-alpine
 
-LABEL application="promocode"
+LABEL application="promo"
 
 
 ENV TERM=xterm-256color

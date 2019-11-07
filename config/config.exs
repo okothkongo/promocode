@@ -7,13 +7,13 @@
 # General application configuration
 use Mix.Config
 
-config :promocode,
+config :promo,
   namespace: Promo,
   ecto_repos: [Promo.Repo],
   generators: [binary_id: true]
 
 # Configures the endpoint
-config :promocode, PromoWeb.Endpoint,
+config :promo, PromoWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "cXJ20oeQINEpRmptiT/WlaBgjLjP3wsZenMYH3IjnABu+SX3j91qPrZ4gceqrM6t",
   render_errors: [view: PromoWeb.ErrorView, accepts: ~w(json)],

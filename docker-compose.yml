@@ -11,12 +11,12 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  promocode:
+  promo:
     build: .
-    image: promocode
+    image: promo
     environment:
       POSTGRES_HOST: "database"
-      POSTGRES_USERNAME: "${POSTGRES_USERNAME}"
+      POSTGRES_USERNAME: "${POSTGRES_USERNAME}" 
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     ports:
       - "4000:4000"
