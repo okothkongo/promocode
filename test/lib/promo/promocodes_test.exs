@@ -39,4 +39,13 @@ defmodule Promo.PromoCodesTest do
     assert changeset.valid? == false
     assert Repo.all(PromoCode) == []
   end
+
+  test "active_promocodes/0 returns all active promocodes", %{attrs: attrs} do
+    PromoCodes.create_promocodes(attrs)
+
+    promocodes = PromoCodes.active_promocodes()
+
+    refute [] == promocodes
+    assert 10 == promocodes |> Enum.count()
+  end
 end
