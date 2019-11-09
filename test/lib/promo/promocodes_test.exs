@@ -48,4 +48,11 @@ defmodule Promo.PromoCodesTest do
     refute [] == promocodes
     assert 10 == promocodes |> Enum.count()
   end
+
+  test "promocodes/0 returns all promocodes", %{attrs: attrs} do
+    PromoCodes.create_promocodes(attrs)
+    promocodes = PromoCodes.all_promocodes()
+    assert 10 == promocodes |> Enum.count()
+    refute [] == promocodes
+  end
 end

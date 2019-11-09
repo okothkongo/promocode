@@ -121,4 +121,9 @@ defmodule Promo.PromoCodes do
     PromoCode.active_promocode_query()
     |> Repo.all()
   end
+
+  def all_promocodes do
+    PromoCode
+    |> Repo.all()
+  end
 end
