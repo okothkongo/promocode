@@ -2,6 +2,7 @@ defmodule Promo.PromoCode do
   @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
   @primary_key {:code, :string, autogenerate: false}
   schema "promocodes" do
     field :event_venue, :string
@@ -37,5 +38,9 @@ defmodule Promo.PromoCode do
       :radius,
       :number_of_codes
     ])
+  end
+
+  def active_promocode_query do
+    from p in "promocodes", where: p.status == "active", select: [:code]
   end
 end

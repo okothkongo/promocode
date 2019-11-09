@@ -11,4 +11,10 @@ defmodule PromoWeb.PromoCodeController do
       |> render("new.json", promocode: promocode)
     end
   end
+
+  def index(conn, %{"status" => "active"}) do
+    conn
+    |> put_status(:ok)
+    |> render("index.json", active_codes: PromoCodes.active_promocodes())
+  end
 end
