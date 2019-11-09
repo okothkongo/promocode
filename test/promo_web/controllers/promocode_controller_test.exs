@@ -45,6 +45,17 @@ defmodule Promo.PromoodeControllerTest do
              render_json(PromoCodeView, "index.json", conn.assigns)
   end
 
+  test "all  promocodes can be retrieved", %{conn: conn} do
+    conn =
+      get(
+        conn,
+        Routes.promo_code_path(conn, :index)
+      )
+
+    assert json_response(conn, 200) ==
+             render_json(PromoCodeView, "index.json", conn.assigns)
+  end
+
   defp render_json(module, template, assigns) do
     assigns = Map.new(assigns)
 
