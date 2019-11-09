@@ -20,7 +20,7 @@ defmodule Promo.PromoodeControllerTest do
         Routes.promo_code_path(conn, :create, attrs)
       )
 
-    assert json_response(conn, 201) == render_json(PromoCodeView, "index.json", conn.assigns)
+    assert json_response(conn, 201) == render_json(PromoCodeView, "new.json", conn.assigns)
   end
 
   test "create/2 with invalid renders errors", %{conn: conn} do
