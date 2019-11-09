@@ -112,4 +112,13 @@ defmodule Promo.PromoCodes do
     amount_of_each = amount / number_of_codes
     Float.round(amount_of_each, 2)
   end
+
+  @doc """
+  gets all active promocodes from the database.
+  """
+  @spec active_promocodes :: [%PromoCode{}, ...] | []
+  def active_promocodes do
+    PromoCode.active_promocode_query()
+    |> Repo.all()
+  end
 end

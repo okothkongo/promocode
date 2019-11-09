@@ -3,7 +3,7 @@ defmodule Promo.PromoodeControllerTest do
   alias PromoWeb.ChangesetView
   alias PromoWeb.PromoCodeView
 
-  test "create renders codes details", %{conn: conn} do
+  setup do
     attrs = %{
       amount: 300,
       end_date: "2019-10-11",
@@ -14,6 +14,10 @@ defmodule Promo.PromoodeControllerTest do
       start_date: "2019-10-10"
     }
 
+    [attrs: attrs]
+  end
+
+  test "create renders codes details", %{conn: conn, attrs: attrs} do
     conn =
       post(
         conn,
@@ -32,6 +36,13 @@ defmodule Promo.PromoodeControllerTest do
 
     assert json_response(conn, 422) ==
              render_json(ChangesetView, "error.json", conn.assigns)
+  end
+
+  test "all active promocodes can be retrieved", %{conn: conn} do
+    conn = get(conn, "api/promocodes?status=active")
+
+    assert json_response(conn, 200) ==
+             render_json(PromoCodeView, "index.json", conn.assigns)
   end
 
   defp render_json(module, template, assigns) do
