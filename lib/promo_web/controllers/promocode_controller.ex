@@ -23,4 +23,28 @@ defmodule PromoWeb.PromoCodeController do
     |> put_status(:ok)
     |> render("index.json", promocodes: PromoCodes.all_promocodes())
   end
+
+  def update(conn, %{"id" => code, "radius" => _radius} = params) do
+    update_response(conn, code, params)
+  end
+
+  def update(conn, %{"id" => code, "status" => _status} = params) do
+    update_response(conn, code, params)
+  end
+
+  defp update_response(conn, code, params) do
+    case PromoCodes.get_promocode(code) do
+      nil ->
+        conn
+        |> put_status(422)
+        |> render("error.json", does_not_exist: "promocode do not exist")
+
+      promocode ->
+        with {:ok, updated_promocode} <- PromoCodes.update_promocode(promocode, params) do
+          conn
+          |> put_status(:ok)
+          |> render("show.json", updated_promocode: updated_promocode)
+        end
+    end
+  end
 end

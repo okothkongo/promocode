@@ -55,4 +55,24 @@ defmodule Promo.PromoCodesTest do
     assert 10 == promocodes |> Enum.count()
     refute [] == promocodes
   end
+
+  test "update_promocode/2 updates a promocode with new attributes", %{attrs: attrs} do
+    PromoCodes.create_promocodes(attrs)
+    [promocode] = PromoCode |> Repo.all() |> Enum.take(1)
+
+    {:ok, updated_promocode} = PromoCodes.update_promocode(promocode, %{"status" => "inactive"})
+
+    assert "inactive" == updated_promocode.status
+    refute "active" == updated_promocode.status
+  end
+
+  test "get_promocode/1 takes in a specific code and returns the promocode", %{attrs: attrs} do
+    PromoCodes.create_promocodes(attrs)
+    [promocode] = PromoCode |> Repo.all() |> Enum.take(1)
+
+    promo = PromoCodes.get_promocode(promocode.code)
+
+    refute nil == promo
+    assert promocode == promo
+  end
 end

@@ -12,4 +12,12 @@ defmodule PromoWeb.PromoCodeView do
   def render("index.json", %{promocodes: promocodes}) do
     Enum.map(promocodes, fn promocode -> promocode.code end)
   end
+
+  def render("error.json", %{does_not_exist: _message}) do
+    %{error: "promocode with given code does not exist"}
+  end
+
+  def render("show.json", %{updated_promocode: updated_promocode}) do
+    updated_promocode |> Map.from_struct() |> Map.drop([:__meta__])
+  end
 end
