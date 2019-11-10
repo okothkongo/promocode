@@ -11,8 +11,10 @@ defmodule Promo.PromoCodes do
   @doc """
   Takes a map of attributes of promocodes or promocode to be created and returns a 
   {:ok, %{}} or {:error, %Ecto.Changeset{}}  of failure.
+
+
   """
-  @spec create_promocodes(map) :: {:ok, map} | {:error, %Ecto.Changeset{}}
+  @spec create_promocodes(map) :: {:ok, map} | {:error, Ecto.Changeset.t()}
   def create_promocodes(attrs) do
     changeset =
       %PromoCode{}
@@ -122,8 +124,35 @@ defmodule Promo.PromoCodes do
     |> Repo.all()
   end
 
+  @doc """
+  gets all promocodes in the database
+  """
+  @spec all_promocodes :: [%PromoCode{}, ...] | []
   def all_promocodes do
     PromoCode
     |> Repo.all()
+  end
+
+  @doc """
+  Takes in a promocode as the first argument and updates it with the given attributes.
+  Attributes that can be updated are the status and radius of a specific promocode.
+  """
+  @spec update_promocode(%PromoCode{}, map()) ::
+          {:ok, %PromoCode{}} | {:error, Ecto.Changeset.t()}
+  def update_promocode(promocode, params) do
+    params = params |> Map.put("number_of_codes", 1)
+
+    promocode
+    |> PromoCode.changeset(params)
+    |> Repo.update()
+  end
+
+  @doc """
+  gets a promocode using the code.
+  """
+  @spec get_promocode(String.t()) :: %PromoCode{} | nil
+  def get_promocode(code) do
+    PromoCode
+    |> Repo.get(code)
   end
 end
