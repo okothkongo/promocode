@@ -75,4 +75,40 @@ defmodule Promo.PromoCodesTest do
     refute nil == promo
     assert promocode == promo
   end
+
+  test "validate_cordinates/3  return :invalid_cordinate if origin or destination is invalid", %{
+    attrs: attrs
+  } do
+    PromoCodes.create_promocodes(attrs)
+    [promocode] = PromoCode |> Repo.all() |> Enum.take(1)
+
+    assert PromoCodes.validate_cordinates("origin", "destination", promocode.code) ==
+             :invalid_cordinates
+  end
+
+  test "validate_cordinates/3 returns wrong destination if destination  do not match event venue",
+       %{attrs: attrs} do
+    attrs = Map.put(attrs, "event_venue", "45.900,-5.714722")
+    PromoCodes.create_promocodes(attrs)
+    [promocode] = PromoCode |> Repo.all() |> Enum.take(1)
+
+    assert PromoCodes.validate_cordinates(
+             "50.0663889, -5.7147222",
+             "58.6438889, -3.07",
+             promocode.code
+           ) ==
+             :wrong_destination
+  end
+
+  test "validate_cordinates/3 returns true if radius is with range", %{attrs: attrs} do
+    attrs = Map.put(attrs, "event_venue", "50.0663889,-5.7147222")
+    PromoCodes.create_promocodes(attrs)
+    [promocode] = PromoCode |> Repo.all() |> Enum.take(1)
+
+    assert PromoCodes.validate_cordinates(
+             "50.0663889,-5.7147222",
+             "58.6438889, -3.07",
+             promocode.code
+           ) == true
+  end
 end
