@@ -155,4 +155,57 @@ defmodule Promo.PromoCodes do
     PromoCode
     |> Repo.get(code)
   end
+
+  @doc """
+  confirms the format of the coordinates and returns true if the distance between origin and destination is within range
+  """
+  @spec validate_cordinates(String.t(), String.t(), String.t()) ::
+          boolean() | :wrong_destination | :invalid_cordinates
+  def validate_cordinates(destination, origin, code) do
+    if valid_cordinates?(destination) and valid_cordinates?(origin) do
+      destination = _get_cordinates_list_of_floats(destination)
+      origin = _get_cordinates_list_of_floats(origin)
+      cordinates_range_with_range?(destination, origin, code)
+    else
+      :invalid_cordinates
+    end
+  end
+
+  defp cordinates_range_with_range?(destination, origin, code) do
+    promocode = get_promocode(code)
+
+    if destination ==
+         _get_cordinates_list_of_floats(promocode.event_venue) do
+      promocode.radius <=
+        abs(
+          Geocalc.distance_between(
+            destination,
+            origin
+          )
+        )
+    else
+      :wrong_destination
+    end
+  end
+
+  @spec valid_cordinates?(String.t()) :: boolean
+  defp valid_cordinates?(cordinates) do
+    cordinates = cordinates |> String.replace(" ", "")
+
+    cordinates_regex =
+      ~r/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/
+
+    Regex.match?(cordinates_regex, cordinates)
+  end
+
+  defp _get_cordinates_list_of_floats(cordinates) do
+    cordinates = cordinates |> String.replace(" ", "")
+
+    [{latitude, ""}, {longitude, ""}] =
+      cordinates
+      |> String.split(",")
+      |> Enum.map(fn cordinate -> Float.parse(cordinate) end)
+
+    [latitude, longitude]
+  end
 end

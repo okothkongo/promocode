@@ -18,6 +18,8 @@ defmodule PromoWeb.PromoCodeView do
   end
 
   def render("show.json", %{updated_promocode: updated_promocode}) do
-    updated_promocode |> Map.from_struct() |> Map.drop([:__meta__])
+    updated_promocode
+    |> Map.from_struct()
+    |> Map.drop([:__meta__, :inserted_at, :updated_at])
   end
 end
