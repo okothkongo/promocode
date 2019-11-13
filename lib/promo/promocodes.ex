@@ -174,8 +174,7 @@ defmodule Promo.PromoCodes do
   defp cordinates_range_with_range?(destination, origin, code) do
     promocode = get_promocode(code)
 
-    if destination ==
-         _get_cordinates_list_of_floats(promocode.event_venue) do
+    if destination == _get_cordinates_list_of_floats(promocode.event_venue) do
       promocode.radius <=
         abs(
           Geocalc.distance_between(
