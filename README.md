@@ -22,9 +22,9 @@ his an api for creating promocodes for events offering customers rides from the 
  
 | purpose                                                 | path                                                                                    | method | params                                                        |
 |---------------------------------------------------------|-----------------------------------------------------------------------------------------|--------|---------------------------------------------------------------|
-| creating promocodes                                     | http://localhost:4000/api/promocodes                                                    | POST   | number_of_codes, amount, expiry_date, radius, event_venue,  number_of_rides, start_date,  end_date |
-| deactivating promocode                                  | http://localhost:4000/api/promocodes/:code                                         | PUT    | status (should be "inactive" or "active"), radius |
-| checking promocode validity | http://localhost:4000/api/promocodes/:code | GET    | origin, destination            |
+| creating promocodes                                     | http://localhost:4000/api/promocodes                                                    | POST   | number_of_codes, amount, radius, event_venue,  number_of_rides, start_date,  end_date |
+| deactivating promocode                                  | http://localhost:4000/api/promocodes/:code                                         | PATCH    | status (should be "inactive" or "active"), radius |
+| checking promocode validity | http://localhost:4000/api/promocodes/:code | POST    | origin, destination            |
 | view active promocodes                                  | http://localhost:4000/api/promocodes                                     | GET    |   status("active")                                                            |
 | view all promocodes                                     | http://localhost:4000/api/promocodes                                                    | GET    |                                                               |
 ## Request and Response examples
