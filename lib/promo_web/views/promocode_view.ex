@@ -22,4 +22,16 @@ defmodule PromoWeb.PromoCodeView do
     |> Map.from_struct()
     |> Map.drop([:__meta__, :inserted_at, :updated_at])
   end
+
+  def render("validity.json", %{valid?: _validity} = assigns) do
+    assigns
+  end
+
+  def render("validity.json", %{wrong_dest: _wrong_dest} = assigns) do
+    assigns
+  end
+
+  def render("validity.json", %{invalid: _invalid} = assigns) do
+    assigns
+  end
 end

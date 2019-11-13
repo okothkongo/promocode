@@ -38,15 +38,13 @@ defmodule Promo.PromoodeControllerTest do
         Routes.promo_code_path(conn, :create, %{})
       )
 
-    assert json_response(conn, 422) ==
-             render_json(ChangesetView, "error.json", conn.assigns)
+    assert json_response(conn, 422) == render_json(ChangesetView, "error.json", conn.assigns)
   end
 
   test "all active promocodes can be retrieved", %{conn: conn} do
     conn = get(conn, "api/promocodes?status=active")
 
-    assert json_response(conn, 200) ==
-             render_json(PromoCodeView, "index.json", conn.assigns)
+    assert json_response(conn, 200) == render_json(PromoCodeView, "index.json", conn.assigns)
   end
 
   test "all  promocodes can be retrieved", %{conn: conn} do
@@ -56,15 +54,13 @@ defmodule Promo.PromoodeControllerTest do
         Routes.promo_code_path(conn, :index)
       )
 
-    assert json_response(conn, 200) ==
-             render_json(PromoCodeView, "index.json", conn.assigns)
+    assert json_response(conn, 200) == render_json(PromoCodeView, "index.json", conn.assigns)
   end
 
   test "promocode message sent when updating non-existing code", %{conn: conn} do
     conn = patch(conn, "api/promocodes/s?status=inactive")
 
-    assert json_response(conn, 422) ==
-             render_json(PromoCodeView, "error.json", conn.assigns)
+    assert json_response(conn, 422) == render_json(PromoCodeView, "error.json", conn.assigns)
   end
 
   test "promocode can be updated", %{conn: conn, attrs: attrs} do
@@ -72,8 +68,7 @@ defmodule Promo.PromoodeControllerTest do
     [promocode] = PromoCode |> Repo.all() |> Enum.take(1)
     conn = patch(conn, "api/promocodes/#{promocode.code}?status=inactive")
 
-    assert json_response(conn, 200) ==
-             render_json(PromoCodeView, "show.json", conn.assigns)
+    assert json_response(conn, 200) == render_json(PromoCodeView, "show.json", conn.assigns)
   end
 
   defp render_json(module, template, assigns) do

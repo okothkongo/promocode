@@ -96,8 +96,7 @@ defmodule Promo.PromoCodesTest do
              "50.0663889, -5.7147222",
              "58.6438889, -3.07",
              promocode.code
-           ) ==
-             :wrong_destination
+           ) == :wrong_destination
   end
 
   test "validate_cordinates/3 returns true if radius is with range", %{attrs: attrs} do

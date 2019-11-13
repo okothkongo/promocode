@@ -32,6 +32,17 @@ defmodule PromoWeb.PromoCodeController do
     update_response(conn, code, params)
   end
 
+  def check_validity(
+        conn,
+        %{"origin" => origin, "destination" => destination, "id" => code}
+      ) do
+    case PromoCodes.validate_cordinates(destination, origin, code) do
+      true -> render(conn, "validity.json", valid?: true)
+      :wrong_destination -> render(conn, "validity.json", wrong_dest: "out of range")
+      :invalid_cordinates -> render(conn, "validity.json", invalid: "invalid location")
+    end
+  end
+
   defp update_response(conn, code, params) do
     case PromoCodes.get_promocode(code) do
       nil ->
